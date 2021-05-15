@@ -1,5 +1,17 @@
 const createTaskHtml = (name, description, assignedTo, dueDate, status) => {
-
+    const html = 
+    `<li class="list-group-item">
+        <div class="d-flex w-100 mt-2 justify-content-between align-items-center">
+            <h5>${name}</h5>
+            <span class="badge badge-danger">${status}</span>
+        </div>
+        <div class="d-flex w-100 mb-3 justify-content-between">
+            <small>Assigned To: ${assignedTo}</small>
+            <small>Due: ${dueDate}</small>
+        </div>
+        <p>${description}</p>
+    </li>`
+    return html;
 }
 
 class TaskManager {
@@ -10,6 +22,7 @@ class TaskManager {
     }
 
     addTask (name, description, assignedTo, dueDate, status="TODO") {
+
         const task = {
             id: this.currentId++,
             name: name,
@@ -18,6 +31,24 @@ class TaskManager {
             dueDate: dueDate,
             status: status
         }
+
         this.tasks.push(task);
+
+    }
+
+    render () {
+
+        const tasksHtmlList = [];
+
+        for (let i = 0; i < this.tasks.length; i++) {
+            let task = this.tasks[i];
+            let date = new Date(task.dueDate);
+            let formattedDate = `${date.getMonth()}\ ${date.getDate()}\ ${date.getFullYear()}`;
+            let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status);
+            tasksHtmlList.push(taskHtml);
+        }
+
+        const taskHtml = tasksHtmlList.join('\n');
+        document.querySelector('#tasks-list').innerHTML = taskHtml;
     }
 }
