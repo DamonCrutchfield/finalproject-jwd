@@ -4,6 +4,7 @@ const newTaskNameInput2 = document.querySelector('#description');
 const newTaskNameInput3 = document.querySelector('#assignedto');
 const newTaskNameInput4 = document.querySelector('#duedate');
 
+
 const alert1 = document.querySelector('#alert1');
 const alert2 = document.querySelector('#alert2');
 const alert3 = document.querySelector('#alert3');
@@ -77,6 +78,7 @@ tasksList.addEventListener('click', (event) => {
         task.status = "DONE";
         newTask.render();
     }
+
 });
 
 
