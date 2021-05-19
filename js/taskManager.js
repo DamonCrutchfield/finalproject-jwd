@@ -66,4 +66,29 @@ class TaskManager {
         return foundTask;
 
     }
+
+    save () {
+
+        const tasksJson = JSON.stringify(this.tasks);
+        localStorage.setItem('tasks', tasksJson);
+
+        const currentId = JSON.stringify(this.currentId);
+        localStorage.setItem('currentId', currentId);
+
+    } 
+
+    load () {
+
+        if (localStorage.getItem('tasks')) {
+            const tasksJson = localStorage.getItem('tasks');
+            console.log(tasksJson);
+            this.tasks.push(JSON.parse(tasksJson));
+        }
+
+        if (localStorage.getItem('currentId')) {
+            const currentId = localStorage.getItem('currentId');
+            this.currentId = JSON.parse(currentId);
+        }
+
+    }
 }

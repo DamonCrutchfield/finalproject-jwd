@@ -1,4 +1,7 @@
 const newTask = new TaskManager();
+// newTask.load();
+// newTask.render();
+
 const newTaskNameInput1 = document.querySelector('#taskname');
 const newTaskNameInput2 = document.querySelector('#description');
 const newTaskNameInput3 = document.querySelector('#assignedto');
@@ -56,6 +59,7 @@ newTaskForm.addEventListener("submit", (event) => {
     event.preventDefault();
     if (validInput === taskFormInput.length) {
         newTask.addTask(newTaskNameInput1.value, newTaskNameInput2.value, newTaskNameInput3.value, newTaskNameInput4.value);
+        newTask.save();
         newTask.render();
         console.log(newTask.tasks);
         validInput = 0;
@@ -76,6 +80,7 @@ tasksList.addEventListener('click', (event) => {
         const taskId = Number(parentTask.dataset.taskId);
         const task = newTask.getTaskById(taskId);
         task.status = "DONE";
+        newTask.save();
         newTask.render();
     }
 
