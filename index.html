@@ -62,8 +62,12 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="duedate">Due date</label>
-                            <input type="text" class="form-control" id="duedate">
-                        </div>
+                            <div id="duedate" class="input-group date" data-provide="datepicker">
+                                <input type="date" id="datepicker" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                         <div id="alert4" class="alert alert-primary" role="alert">
                             please enter valid date
                         </div>
