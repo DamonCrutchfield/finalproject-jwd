@@ -11,6 +11,7 @@ const createTaskHtml = (name, description, assignedTo, dueDate, status, id) => {
         </div>
         <p>${description}</p>
         <button type="button" class="btn btn-success done-button">Done</button>
+        <button type="button" class="btn btn-danger delete-button">Delete</button>
     </li>`
     return html;
 }
