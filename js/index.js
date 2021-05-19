@@ -1,6 +1,6 @@
 const newTask = new TaskManager();
-// newTask.load();
-// newTask.render();
+newTask.load();
+newTask.render();
 
 const newTaskNameInput1 = document.querySelector('#taskname');
 const newTaskNameInput2 = document.querySelector('#description');
@@ -49,19 +49,15 @@ taskButton.addEventListener('click', () => {
 
 });
 
-taskHtml = createTaskHtml("Take out Trash", "Take out the trash to the front of the house", "Damon", "5/21/21", "TODO");
-
-console.log(taskHtml);
-
 const newTaskForm = document.forms[0];
 
 newTaskForm.addEventListener("submit", (event) => {
+
     event.preventDefault();
     if (validInput === taskFormInput.length) {
         newTask.addTask(newTaskNameInput1.value, newTaskNameInput2.value, newTaskNameInput3.value, newTaskNameInput4.value);
         newTask.save();
         newTask.render();
-        console.log(newTask.tasks);
         validInput = 0;
         newTaskNameInput1.value = '';
         newTaskNameInput2.value = '';
@@ -74,12 +70,12 @@ const tasksList = document.querySelector('#tasks-list');
 
 tasksList.addEventListener('click', (event) => { 
 
-   
     if (event.target.classList.contains('done-button')) {
         const parentTask = event.target.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const task = newTask.getTaskById(taskId);
         task.status = "DONE";
+        console.log(task);
         newTask.save();
         newTask.render();
     }

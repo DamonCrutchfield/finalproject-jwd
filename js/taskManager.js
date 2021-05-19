@@ -25,7 +25,7 @@ class TaskManager {
     addTask (name, description, assignedTo, dueDate, status="TODO") {
 
         const task = {
-            id: this.currentId += 1,
+            id: this.currentId++,
             name: name,
             description: description,
             assignedTo: assignedTo,
@@ -44,7 +44,7 @@ class TaskManager {
         for (let i = 0; i < this.tasks.length; i++) {
             let task = this.tasks[i];
             let date = new Date(task.dueDate);
-            let formattedDate = `${date.getMonth()}\ ${date.getDate()}\ ${date.getFullYear()}`;
+            let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
             let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status, task.id);
             tasksHtmlList.push(taskHtml);
         }
@@ -81,8 +81,7 @@ class TaskManager {
 
         if (localStorage.getItem('tasks')) {
             const tasksJson = localStorage.getItem('tasks');
-            console.log(tasksJson);
-            this.tasks.push(JSON.parse(tasksJson));
+            this.tasks = JSON.parse(tasksJson);
         }
 
         if (localStorage.getItem('currentId')) {

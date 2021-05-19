@@ -10,7 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         </script>
         <script defer src="js/taskManager.js"></script>
-        <script defer src="./js/index.js">$('.datepicker').datepicker();</script>
+        <script defer src="./js/index.js"></script>
     </head>
     <body>
         <div class="jumbotron jumbotron-fluid">
@@ -60,15 +60,10 @@
                         <button id='add-task' class="btn btn-primary" type="submit">Add Task</button>
                     </div>
                     <div class="col-sm-3">
-                        
+                        <div class="form-group">
                             <label for="duedate">Due date</label>
-                            <div id="duedate" class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control">
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>
-                        
+                            <input type="text" class="form-control" id="duedate">
+                        </div>
                         <div id="alert4" class="alert alert-primary" role="alert">
                             please enter valid date
                         </div>
