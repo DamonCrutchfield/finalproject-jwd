@@ -5,7 +5,7 @@ newTask.render();
 const newTaskNameInput1 = document.querySelector('#taskname');
 const newTaskNameInput2 = document.querySelector('#description');
 const newTaskNameInput3 = document.querySelector('#assignedto');
-const newTaskNameInput4 = document.querySelector('#duedate');
+const newTaskNameInput4 = document.querySelector('#datepicker');
 
 
 const alert1 = document.querySelector('#alert1');
@@ -39,6 +39,7 @@ taskButton.addEventListener('click', () => {
     taskFormInput.forEach((input, i) => {
         if (!validFormFieldInput(input)) {
             alertMessages[i].style.display = 'block';
+            console.log('input');
             setTimeout(() => {
                 alertMessages[i].style.display = 'none';
             }, 5000)   
@@ -75,7 +76,14 @@ tasksList.addEventListener('click', (event) => {
         const taskId = Number(parentTask.dataset.taskId);
         const task = newTask.getTaskById(taskId);
         task.status = "DONE";
-        console.log(task);
+        newTask.save();
+        newTask.render();
+    }
+
+    if (event.target.classList.contains('delete-button')) {
+        const parentTask = event.target.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        newTask.deleteTask(taskId);
         newTask.save();
         newTask.render();
     }

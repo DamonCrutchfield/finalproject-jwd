@@ -44,9 +44,7 @@ class TaskManager {
 
         for (let i = 0; i < this.tasks.length; i++) {
             let task = this.tasks[i];
-            let date = new Date(task.dueDate);
-            let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-            let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, formattedDate, task.status, task.id);
+            let taskHtml = createTaskHtml(task.name, task.description, task.assignedTo, task.dueDate, task.status, task.id);
             tasksHtmlList.push(taskHtml);
         }
 
@@ -91,4 +89,20 @@ class TaskManager {
         }
 
     }
+
+    deleteTask (taskId) {
+
+        const newTasks = [];
+
+        for (let item = 0; item < this.tasks.length; item++) {
+            const task = this.tasks[item];
+            if (task.id !== taskId) {
+                newTasks.push(task);
+            }
+        }
+
+        this.tasks = newTasks;
+    }
 }
+
+module.exports.TaskManager = TaskManager;
